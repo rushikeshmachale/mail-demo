@@ -2,6 +2,7 @@ import express from "express";
 import nodemailer from "nodemailer";
 import dotenv from 'dotenv'
 const app = express()
+const port = process.env.PORT || 4000
 dotenv.config()
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -28,6 +29,6 @@ app.post('/send', async (req, res) => {
     res.status(500).json({ error: "Internal server error." });
   }
 });
-app.listen(4000, () => {
+app.listen(port, () => {
   console.log("listening to 4000");
 });
