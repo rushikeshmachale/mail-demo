@@ -1,6 +1,7 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import dotenv from 'dotenv'
+import cors from 'cors'
 const app = express()
 const port = process.env.PORT || 4000
 dotenv.config()
@@ -11,6 +12,7 @@ const transporter = nodemailer.createTransport({
     pass: process.env.PASSWORD,
   },
 });
+app.use(cors())
 app.use(express.json())
 app.post('/send', async (req, res) => {
   try {
